@@ -10,8 +10,11 @@ Maximise:
        p x y z s1 s2 s3 b
 
 > t1 = [[-2,2,-4,0,0,0,0]  -- p
+
 >      ,[4,3,1,1,0,0,3]    -- s1  
+
 >      ,[1,1,1,0,1,0,10]   -- s2 *
+
 >      ,[2,1,-1,0,0,1,10]] -- s3
 
 
@@ -32,8 +35,11 @@ Clear the pivot column.
 This is already in row eschelon form.
 
 > t2 = [[2,6,0, 0, 4,0, 1,40]] -- p + 4s2
+
 >      ,[3,2,0, 1,-1,0, 0,-7]  -- s1 - s2
+
 >      ,[1,1,1, 0, 1,0, 0,10]  -- s2 => z
+
 >      ,[3,2,0, 0, 1,1, 0,20]] -- s3 + s2
 
 The columns with only 1 non-zero value (active variables) are:
@@ -43,7 +49,8 @@ The columns with only 1 non-zero value (active variables) are:
 Solution:
 
   z=10/1, s1=-7/1, s3=20/1, p=40/1
-  x = 0, y = 0, z = 10, p = 40
+
+x = 0, y = 0, z = 10, p = 40
 
 Check:
 
@@ -64,9 +71,13 @@ Ax = b
 Tableau 1
 
 >   x1 x2 s1 s2 s3  p  b
+
 > s1 2   3 1  0  0  0  34 
+
 > s2 1   5 0  1  0  0  45
+
 > s3 1   0 0  0  1  0  15
+
 > p -2  -1 0  0  0  1  0
 
 Select the pivot column as the most negative value of the p row excluding column b.
@@ -84,15 +95,21 @@ and (x1, s3) (col 0, row 2) is the pivot element.
 Reduce the tableau to row echelon form in terms of addition and subtraction of the scaled pivot row.
 
 > s2' = s2 -  s3 =  0 5 0 1 -1 0 30
+
 > s1' = s1 - 2s3 = 0 3 1 0 -1 0 4
+
 >                  1 0 0 0  1 0 15
+
 > p'  = p + 2s3' = 0 -1  0 0 2 1 30
 
 Tableau 2
 
 > 0 3  1 0 -1 0 4
+
 > 0 5  0 1 -1 0 30
+
 > 1 0  0 0 1  0 15
+
 > 0 -1 0 0 2  1 30
 
 Select the next negative objective value as the next pivot colum otherwise stop
@@ -102,12 +119,17 @@ Select the next negative objective value as the next pivot colum otherwise stop
 By inspection rhs/entering variable 4/3,30/5=6,15/0=15 so col 2 row 1 is the pivot element.
 
 > 0 0 1 -3/5 -2/5 0 -14   R1-3R2
+
 > 0 1 0 1/5 -1/5 0 6
+
 > 1 1 0 1/5 4/5  0 21 R3+R2
+
 > 0 0 0 1/5  2 14/5 1 36 R4+R2
 
 > x0 = 5
+
 > x1 = 4
+
 > x4 = 8
 
 * SIAM Review, 1995, Vol. 37, No. 2 : pp. 230-234

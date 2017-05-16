@@ -18,8 +18,8 @@
    putStr "m2 y = "
    print $ snd $ fst r2
    putStr "m2 p = "
+   print $ snd r2
    r2a <- result2 $ loop m2a
-   print $ snd r2a
    putStr "m2a x = "
    print $ fst $ fst r2a
    putStr "m2a y = "
@@ -27,7 +27,6 @@
    putStr "m2a p = "
    print $ snd r2a
    r3 <- result2 $ loop m3
-   print $ snd r3
    putStr "m3 x = "
    print $ fst $ fst r3
    putStr "m3 y = "
@@ -42,7 +41,6 @@
    putStr "m4 p = "
    print $ snd r4
    r5 <- result2 $ loop m5
-   print $ snd r5
    putStr "m5 x = "
    print $ fst $ fst r5
    putStr "m5 y = "
@@ -57,7 +55,6 @@
    putStr "m5a p = "
    print $ snd r5a
    r6 <- result2 $ loop m6
-   print $ snd r6
    putStr "m6 x = "
    print $ fst $ fst r6
    putStr "m6 y = "

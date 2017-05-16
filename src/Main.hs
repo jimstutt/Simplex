@@ -5,21 +5,20 @@
  import LPTests
  main :: IO ()
  main = do
-   putStr "m1 ; loop m1"
    r1 <- result2 m1
    putStr "m1 x = "
-   print $ fst $ fst r2
+   print $ fst $ fst r1
    putStr "m1 y = "
-   print $ snd $ fst r2
+   print $ snd $ fst r1
    putStr "m1 p = "
-   print $ snd r2
-   r2 <- result2 (loop m2)
+   print $ snd r1
+   r2 <- result2 $ loop m2
    putStr "m2 x = "
    print $ fst $ fst r2
    putStr "m2 y = "
    print $ snd $ fst r2
    putStr "m2 p = "
-   r2a <- rsult2 $ loop m2a
+   r2a <- result2 $ loop m2a
    print $ snd r2a
    putStr "m2a x = "
    print $ fst $ fst r2a
@@ -35,7 +34,7 @@
    print $ snd $ fst r3
    putStr "m3 p = "
    print $ snd r3
-   r4 <- result2 (loop m4)
+   r4 <- result2 $ loop m4
    putStr "m4 x = "
    print $ fst $ fst r4
    putStr "m4 y = "
@@ -50,14 +49,13 @@
    print $ snd $ fst r5
    putStr "m5 p = "
    print $ snd r5
-   r5a <- result2 (loop m5a)
+   r5a <- result2 $ loop m5a
    putStr "m5a x = "
    print $ fst $ fst r5a
    putStr "m5a y = "
    print $ snd $ fst r5a
    putStr "m5a p = "
    print $ snd r5a
-
    r6 <- result2 $ loop m6
    print $ snd r6
    putStr "m6 x = "
@@ -65,11 +63,7 @@
    putStr "m6 y = "
    print $ snd $ fst r6
    putStr "m6 p = "
-   print $ snd r2a
-
-   putStr "m6 ; loop m6"
-   print m6
-   print $ loop m6
+   print $ snd r6
 
  result2 :: Monad m => [[Rational]] -> m (([Rational],[Rational]),[Rational])
  result2 m0 = do

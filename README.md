@@ -1,17 +1,19 @@
 # The Simplex method
 
-Example 1
+## Example 1
 
 Maximise:
 
-p = 2x - 2y + 4z
+  p = 2x - 2y + 4z
 
-           *
-       x y z s1 s2 s3 p b
-t1 = [[4,3,1,1,0,0,0,3]    -- s1  
-     ,[1,1,1,0,1,0,0,10]   -- s2 *
-     ,[2,1,-1,0,0,1,0.10]  -- s3
-     ,[-2,2,-4,0,0,0,1,0]]  -- p
+             *
+       p x y z s1 s2 s3 b
+
+> t1 = [[-2,2,-4,0,0,0,0]  -- p
+>      ,[4,3,1,1,0,0,3]    -- s1  
+>      ,[1,1,1,0,1,0,10]   -- s2 *
+>      ,[2,1,-1,0,0,1,10]] -- s3
+
 
 Select the column with the most negative p as the pivot column:
 
@@ -29,10 +31,10 @@ Clear the pivot column.
 
 This is already in row eschelon form.
 
- t2 = [[3,2,0, 1,-1,0, 0,-7] -- s1 - s2
-     ,[1,1,1, 0, 1,0, 0,10] -- s2 => z
-     ,[3,2,0, 0, 1,1, 0,20] -- s3 + s2
-     ,[2,6,0, 0, 4,0, 1,40]] -- p + 4s2
+> t2 = [[2,6,0, 0, 4,0, 1,40]] -- p + 4s2
+>      ,[3,2,0, 1,-1,0, 0,-7]  -- s1 - s2
+>      ,[1,1,1, 0, 1,0, 0,10]  -- s2 => z
+>      ,[3,2,0, 0, 1,1, 0,20]] -- s3 + s2
 
 The columns with only 1 non-zero value (active variables) are:
 
@@ -40,13 +42,14 @@ The columns with only 1 non-zero value (active variables) are:
 
 Solution:
 
-z=10/1, s1=-7/1, s3=20/1, p=40/1
+  z=10/1, s1=-7/1, s3=20/1, p=40/1
+  x = 0, y = 0, z = 10, p = 40
 
-x = 0, y = 0, z = 10, p = 40
+Check:
 
-2*0 - 2*0 + 4*10 = 40 - ok!
+  2*0 - 2*0 + 4*10 = 40 - ok!
 
-Example 2
+## Example 2
 
 Ax = b
 
@@ -101,8 +104,6 @@ pc = col 2
 By inspection rhs/entering variable 4/3,30/5=6,15/0=15 so col 2 row 1 is the pivot element.
 
 0 0 1 -3/5 -2/5 0 -14   R1-3R2
-
-
 0 1 0 1/5 -1/5 0 6
 1 1 0 1/5 4/5  0 21 R3+R2
 0 0 0 1/5  2 14/5 1 36 R4+R2
@@ -111,33 +112,29 @@ x0 = 5
 x1 = 4
 x4 = 8
 
- SIAM Review, 1995, Vol. 37, No. 2 : pp. 230-234
+* SIAM Review, 1995, Vol. 37, No. 2 : pp. 230-234
+* A Nonlinear Programming Algorithm for Hospital Management, Frank H. Mathis and Lenora Jane Mathis (doi: 10.1137/1037046)
+* http://scicomp.stackexchange.com/questions/772/what-are-the-advantages-disadvantages-of-interior-point-methods-over-simplex-met
 
-A Nonlinear Programming Algorithm for Hospital Management
-Frank H. Mathis and Lenora Jane Mathis
-(doi: 10.1137/1037046)
-
-http://scicomp.stackexchange.com/questions/772/what-are-the-advantages-disadvantages-of-interior-point-methods-over-simplex-met
-
-Nelder-Mead simplex method
+## Nelder-Mead simplex method
 
 The problem with the simplex method is it cannot be generalized to nonlinear problems, i.e. the majority of real world problems. – user4061
 
 The main obstacles in primal simplex are making sure that you implement Phase I and Phase II correctly, and also that you implement an anticycling rule correctly. The main obstacles in implementing an interior point method for linear programming tend to be more about implementing the iterative method correctly, and scaling the barrier parameter accordingly.
 
-http://rads.stackoverflow.com/amzn/click/1886529191
+* http://rads.stackoverflow.com/amzn/click/1886529191
 
-Bland's rule	
+## Bland's rule	
 
 "In the worst case the simplex method may require an exponential number of pivots, although, as mentioned earlier, no naturally occurring problem has ever exhibited such behavior".
 
-Hirsch conjecture - an algorithm which constructs a solution using m-pivots. This has not been found. 
+## Hirsch conjecture - an algorithm which constructs a solution using m-pivots. This has not been found. 
 
 Based on personal experience, I'd say that simplex methods are marginally easier to understand how to implement than interior point methods, based on personal experience from implementing both primal simplex and a basic interior point method in MATLAB as part of taking a linear programming class. The main obstacles in primal simplex are making sure that you implement Phase I and Phase II correctly, and also that you implement an anticycling rule correctly. The main obstacles in implementing an interior point method for linear programming tend to be more about implementing the iterative method correctly, and scaling the barrier parameter accordingly.
 
 You can find a more complete discussion of the pros and cons of each algorithm in a textbook on linear programming, such as Introduction to Linear Optimization by Bertsimas and Tsitsiklis. (Disclaimer: I learned linear programming from this textbook, and took linear programming at MIT from Bertsimas' wife.) Here are some of the basics:
 
--- # Pros of simplex:
+## Pros of simplex:
 
 * Given n decision variables, usually converges in O(n) operations with O(n) pivots.
 
@@ -146,14 +143,14 @@ reduced cost can be used for this check.)
 
 * Good for small problems.
 
--- # Cons of simplex:
+## Cons of simplex:
 
 * Given n decision variables, you can always find a problem instance where the algorithm requires O(2n) operations and pivots to arrive at a solution.
 
 * Not so great for large problems, because pivoting operations become expensive. Cutting-plane algorithms or delayed column generation algorithms
 like Dantzig-Wolfe can sometimes compensate for this shortcoming.
 
--- # Pros of interior point methods:
+## Pros of interior point methods:
 
 * Have polynomial time asymptotic complexity of:
 
@@ -161,17 +158,17 @@ like Dantzig-Wolfe can sometimes compensate for this shortcoming.
 
 where
 
-L is the number of bits of input to the algorithm.
+  L is the number of bits of input to the algorithm.
 
 * Better for large, sparse problems because the linear algebra required for the algorithm is faster.
 
--- # Cons of interior point methods:
+## Cons of interior point methods:
 
 * It's not as intuitively satisfying because you're right, these methods don't visit vertices. They wander through the interior region, converging on a solution when successful.
 
 * For small problems, simplex will probably be faster. (You can construct pathological cases, like the Klee-Minty cube.)
 
----
+...
 
 A good summary. Klee-Minty in fact seems to be designed to confound simplex LP methods... – J. M. Jan 15 '12 at 5:15	 
 	

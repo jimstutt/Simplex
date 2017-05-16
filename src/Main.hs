@@ -26,7 +26,7 @@
    print $ snd $ fst r2a
    putStr "m2a p = "
    print $ snd r2a
-   r3 <- rsult2 $ loop m3
+   r3 <- result2 $ loop m3
    print $ snd r3
    putStr "m3 x = "
    print $ fst $ fst r3

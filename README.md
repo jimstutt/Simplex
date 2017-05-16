@@ -63,11 +63,11 @@ Ax = b
 
 Tableau 1
 
-  x1 x2 s1 s2 s3  p  b
-s1 2   3 1  0  0  0  34 
-s2 1   5 0  1  0  0  45
-s3 1   0 0  0  1  0  15
-p -2  -1 0  0  0  1  0
+>   x1 x2 s1 s2 s3  p  b
+> s1 2   3 1  0  0  0  34 
+> s2 1   5 0  1  0  0  45
+> s3 1   0 0  0  1  0  15
+> p -2  -1 0  0  0  1  0
 
 Select the pivot column as the most negative value of the p row excluding column b.
 
@@ -83,34 +83,32 @@ and (x1, s3) (col 0, row 2) is the pivot element.
 
 Reduce the tableau to row echelon form in terms of addition and subtraction of the scaled pivot row.
 
-s2' = s2 - s3 =  0 5 0 1 -1 0 30
-s1' = s1 - 2s3 = 0 3 1 0 -1 0 4
-                 1 0 0 0  1 0 15
-p'  = p+2s3' = 0 -1  0 0 2 1 30
-
-==>
+> s2' = s2 -  s3 =  0 5 0 1 -1 0 30
+> s1' = s1 - 2s3 = 0 3 1 0 -1 0 4
+>                  1 0 0 0  1 0 15
+> p'  = p + 2s3' = 0 -1  0 0 2 1 30
 
 Tableau 2
 
-0 3  1 0 -1 0 4
-0 5  0 1 -1 0 30
-1 0  0 0 1  0 15
-0 -1 0 0 2  1 30
+> 0 3  1 0 -1 0 4
+> 0 5  0 1 -1 0 30
+> 1 0  0 0 1  0 15
+> 0 -1 0 0 2  1 30
 
 Select the next negative objective value as the next pivot colum otherwise stop
 
-pc = col 2
+> pc = col 2
 
 By inspection rhs/entering variable 4/3,30/5=6,15/0=15 so col 2 row 1 is the pivot element.
 
-0 0 1 -3/5 -2/5 0 -14   R1-3R2
-0 1 0 1/5 -1/5 0 6
-1 1 0 1/5 4/5  0 21 R3+R2
-0 0 0 1/5  2 14/5 1 36 R4+R2
+> 0 0 1 -3/5 -2/5 0 -14   R1-3R2
+> 0 1 0 1/5 -1/5 0 6
+> 1 1 0 1/5 4/5  0 21 R3+R2
+> 0 0 0 1/5  2 14/5 1 36 R4+R2
 
-x0 = 5
-x1 = 4
-x4 = 8
+> x0 = 5
+> x1 = 4
+> x4 = 8
 
 * SIAM Review, 1995, Vol. 37, No. 2 : pp. 230-234
 * A Nonlinear Programming Algorithm for Hospital Management, Frank H. Mathis and Lenora Jane Mathis (doi: 10.1137/1037046)

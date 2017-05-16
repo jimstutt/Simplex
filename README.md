@@ -23,9 +23,9 @@ Select the row with the least positive b/z value:
 
 ==> s2 (row 2)
 
-So the pivot element is c3r2 == 1.
+So the pivot element is col 3 row 2 == 1.
 
-Clear the pivot column
+Clear the pivot column.
 
 This is already in row eschelon form.
 
@@ -36,15 +36,15 @@ This is already in row eschelon form.
 
 The columns with only 1 non-zero value (active variables) are:
 
-z,s1,s3,p
+  z, s1, s3, p
 
-Solution
+Solution:
 
-z=10/1,s1=-7/1,s3=20/1,p=40/1
+z=10/1, s1=-7/1, s3=20/1, p=40/1
 
 x = 0, y = 0, z = 10, p = 40
 
-2*0 - 2*0 + 4*10 = 40 - correct!
+2*0 - 2*0 + 4*10 = 40 - ok!
 
 Example 2
 
@@ -56,22 +56,7 @@ Ax = b
 ,[1,5]  = ,[45]
 ,[1,0]] = ,[15]] 
 
-
  x = [x1,x2]
-
- prod axy x = do
-   let p = axy!!1!!1*x1 + axy!!1!!2*x2
-       q = axy!!2!!1*x1 + axy!!2!!2*x2
-       r = axy!!3!!1*x1 + axy!!3!!2*x2
-
- c = [[1],[2]]
-
-x >= 0
-x - s1 = 0
-axy * x <= b
-axy * x + s2 = b
-
-maximise [c!!2*x1,c!!1*x2]
 
 Tableau 1
 
@@ -83,17 +68,17 @@ p -2  -1 0  0  0  1  0
 
 Select the pivot column as the most negative value of the p row excluding column b.
 
-So x1 = -2 is the pivot column.
+So x1 == -2 is the pivot column.
 
-Select the pivot row as the least positive value of b/x
+Select the pivot row as the least positive value of b/x.
 
 By inspection:
 
 s3 = 15/1 = 15
 
-and x1:s3 is the pivot element.
+and (x1, s3) (col 0, row 2) is the pivot element.
 
-Reduce to row eshelon form in terms of addition and subtraction of the pivot row
+Reduce the tableau to row echelon form in terms of addition and subtraction of the scaled pivot row.
 
 s2' = s2 - s3 =  0 5 0 1 -1 0 30
 s1' = s1 - 2s3 = 0 3 1 0 -1 0 4
@@ -489,7 +474,9 @@ p = 12
 x = 3
 
 7.3.1) Max. 2x + y
+
 Subject to:
+
   3x + y <= 6
    x - y <= 2
        y <= 3
@@ -511,10 +498,6 @@ pri = 1 -- could be 2 as tied.
 
 pci = 2
 pri = 3
-
-x = 2
-y = 3
-p = 9
 
 > m731b = [[0,1,0,   1,1/3, 5] -- r0 + r3''*1/3
 >         ,[0,1,0, 1/3, -1,-1] -- r1 - r3

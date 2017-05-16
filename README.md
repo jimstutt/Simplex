@@ -1,211 +1,4 @@
-3-- Birmingham low carbon technology optimisation
-
-http://journals.sagepub.com/doi/full/10.1177/2053019616688022
-
-https://rd.springer.com/article/10.1007/s11356-014-3470-y
-
-https://plus.google.com/104603011082997519952/posts/KzWApbskvYF
-
-The report gives is a cost effective and carbon reduction numbers and ranking.for each technique in each sector ie. domestic, commercial, industrial ane transport.
-
-https://www.nature.com/news/manure-fertilizer-increases-antibiotic-resistance-1.16081
-
--- Constraints
-
-* the extent to which any technique can be deployed eg. you can't than the number of suitable roofs, so maximum number of suitable houses
-* the available supply of technology
-
--- Objective function
-
-* the total target amount of carbon reduction from all techniques
-
-> module Simplex where
-
--- Domestic
- 
-> {- LANGUAGE ScopedTypeVariables FlexibleContexts DataKinds -}
-
-> import Control.Monad (guard)
-> import Data.List
-> import Data.Maybe
-> import Data.Ratio
-
-> import LPTests
-
-> --import Test.QuickCheck
-
-> objRow :: [[Rational]] -> [Rational]
-> objRow m0 = m0!!0
-
-> pivColIdx :: [[Rational]] -> Int
-> pivColIdx m = fromJust $ elemIndex (minimum (objRow m)) (objRow m)
-
-> colMaj :: [[Rational]] -> [[Rational]]
-> colMaj m = transpose m
-
-> pivCol :: [[Rational]] -> [Rational]
-> pivCol m = colMaj m!!(pivColIdx m) -- transpose row index == col index
-
-> colLen m = length $ transpose m
-
-> rhs :: [[Rational]] -> [Rational]
-> rhs m = (colMaj m)!!(length (m!!0)-1)
-
-> ratios :: [[Rational]] -> [(Int,Rational)]
-> ratios m = [(i,(rhs m)!!i/(pivCol m)!!i) | i <- [0..((length $ rhs m)-1)], (rhs m)!!i > 0, (pivCol m)!!i > 0]
-
-> pivRowIdx :: [[Rational]] -> Int
-> pivRowIdx m = fst $ (ratios m)!!fromJust (elemIndex (minimum (fmap snd $ ratios m)) (fmap snd $ ratios m))
-
-> pivRow :: [[Rational]] -> [Rational]
-> pivRow m = m!!(pivRowIdx m)
-
-> pivElt :: [[Rational]] -> Rational
-> pivElt m = m!!(pivRowIdx m)!!(pivColIdx m)
-
-> normedPivRow :: [Rational] -> Rational -> [Rational]
-> normedPivRow r pe  = fmap (*(scaleCoeff pe)) r -- (fmap toRational r)
-
-> scaleCoeff :: Rational -> Rational
-> scaleCoeff pe = (1/(toRational pe))
-
-> addRowCoeff :: Int -> [[Rational]] -> Rational
-> addRowCoeff r m  = -fromRational (m!!r!!(pivColIdx m)) / toRational(pivElt m)
-
-> loop :: [[Rational]] -> [[Rational]]
-> loop m0 = do
->       let pri = pivRowIdx m0
->           pr =  normedPivRow (pivRow m0) (pivElt m0)
->           ris = [0..(length m0 - 1)]
->           pre = takeWhile (< pri) ris
->           post = (takeWhile (> pri). drop 1 . dropWhile (< pri)) ris
->       orderedAdd pri pre post ris pr m0
-
-> orderedAdd :: Int -> [Int] -> [Int] -> [Int] -> [Rational] -> [[Rational]] -> [[Rational]]
-> orderedAdd pri pre post ris pr m0
->   |(pri == (ris!!0)) =
->           do
->             let postrs = fmap (addRow m0) post
->                 m1 = (pr:postrs)
->             if (hasNeg (m1!!0))
->               then loop m1
->               else m1
->   |(pri /= (ris!!0) && pri /= (ris!!((length ris)-1))) =
->            do
->              let prers = fmap (addRow m0) pre
->                  postrs = fmap (addRow m0) post
->                  m1 = (prers++(pr:postrs))
->              if (hasNeg (m1!!0))
->                then loop m1
->                else m1 
->   |(pri == (ris!!((length ris)-1))) =
->           do
->             let prers = fmap (addRow m0) pre
->                 m1 = (prers++[pr])
->             if (hasNeg (m1!!0))
->               then loop m1
->               else m1
-
-> hasNeg :: [Rational] -> Bool
-> hasNeg r = not (null (filter (<0) r))
-
-> addRow' :: Int -> Int-> Rational -> [[Rational]] -> [Rational]
-> addRow' ri pri c m = zipWith (+) (m!!ri) (map (c*) (m!!pri)) -- (c * pivRow) added to target row
-
-> addRow :: [[Rational]] -> Int -> [Rational]
-> addRow m0 ri = do
->       let pri = pivRowIdx m0
->       let prc1 = addRowCoeff ri m0
->       addRow' ri pri prc1 m0
-
-> isUnbounded t = putStrLn "unbounded"
-> isUnique t = putStrLn "unique"
-> hasAlts t = putStrLn "alternatives"
-> isDegenerate t = putStrLn "degenerate"
-
-> main :: IO ()
-> main = do
->   putStr "m1 ; loop m1"
->   print $ loop m1
->   putStrLn "m2 ; loop m2"
->   r2 <- result2 (loop m2)
->   putStr "m2 x = "
->   print $ fst $ fst r2
->   putStr "m2 y = "
->   print $ snd $ fst r2
->   putStr "m2 p = "
->   print $ snd r2
->   print m2
->   print $ loop m2
->   putStr "m2a ; loop m2a"
->   print m2a
->   print $ loop m2a
->   putStr "m3 ; loop m3"
->   print $ loop m3
->   putStrLn "m4 ; loop m4"
->   r4 <- result2 (loop m4)
->   putStr "m4 x = "
->   print $ fst $ fst r4
->   putStr "m4 y = "
->   print $ snd $ fst r4
->   putStr "m4 p = "
->   print $ snd r4
->   print m4
->   putStr "m5 ; loop m5"
->   print $ loop m5
->   putStrLn "m5a ; loop m5a"
->   r5a <- result2 (loop m5a)
->   putStr "m5a x = "
->   print $ fst $ fst r5a
->   putStr "m5a y = "
->   print $ snd $ fst r5a
->   putStr "m5a p = "
->   print $ snd r5a
->   print $ loop m5a
->
->   putStr "m6 ; loop m6"
->   print m6
->   print $ loop m6
-
-
-> result2 :: Monad m => [[Rational]] -> m (([Rational],[Rational]),[Rational])
-> result2 m0 = do
->   let hasX = not (null (filter (==1) ((transpose m0)!!0))) -- x col has a 1 at pos n
->       x = (take 1 . drop ((length (m0!!0))-1)) (m0!!1) 
->       hasY = not (null (filter (==1) ((transpose m0)!!1))) -- y col has a 1 at pos m
->       y = (take 1 . drop ((length (m0!!0))-1)) (m0!!2)
->       p = m0!!0!!((length (m0!!0)-1))
->   return ((x,y),[p])
-
-
->{- test3 :: [[Rational]] -> (Rational,Rational,Rational)
-> test3 m0 = do
->   if (filter (==1) ((colMaj m0)!!0))
->     then do
->       let x =  ((take 1 . drop ((length m0)-1)))(m0!!0!!((length m0)-1))
->     else do
->       let x = 0
->   if (filter (==1) ((colMaj m0)!!1))
->     then do
->       let y =  ((take 1 . drop ((length m0)-1)))(m0!!1!!((length m0)-1))
->     else do
->       let y = 0
->   if (filter (==1) ((colMaj m0)!!2))
->     then do
->       let z =  ((take 1 . drop ((length m0)-1)))(m0!!2!!((length m0)-1))
->     else do
->       let z = 0
->   return (x,y,z)
->-}
-
->{- test t = case t of
->     isUnbounded t -> _
->     isUnique t -> _
->     isMultiple t -> _
->     isDegenerate t -> _  
->-}
-
-http://www.zweigmedia.com/RealWorld/tutorialsf4/frames4_3.html
+# The Simplex method
 
 Example 1
 
@@ -236,7 +29,7 @@ Clear the pivot column
 
 This is already in row eschelon form.
 
-t2 = [[3,2,0, 1,-1,0, 0,-7] -- s1 - s2
+ t2 = [[3,2,0, 1,-1,0, 0,-7] -- s1 - s2
      ,[1,1,1, 0, 1,0, 0,10] -- s2 => z
      ,[3,2,0, 0, 1,1, 0,20] -- s3 + s2
      ,[2,6,0, 0, 4,0, 1,40]] -- p + 4s2
@@ -249,18 +42,11 @@ Solution
 
 z=10/1,s1=-7/1,s3=20/1,p=40/1
 
-
 x = 0, y = 0, z = 10, p = 40
 
 2*0 - 2*0 + 4*10 = 40 - correct!
 
 Example 2
-
-Tahyin Abu Awaad
-
-Example 3
-
--- Steve's problem
 
 Ax = b
 
@@ -281,11 +67,8 @@ Ax = b
  c = [[1],[2]]
 
 x >= 0
-
 x - s1 = 0
-
 axy * x <= b
-
 axy * x + s2 = b
 
 maximise [c!!2*x1,c!!1*x2]
@@ -316,6 +99,7 @@ s2' = s2 - s3 =  0 5 0 1 -1 0 30
 s1' = s1 - 2s3 = 0 3 1 0 -1 0 4
                  1 0 0 0  1 0 15
 p'  = p+2s3' = 0 -1  0 0 2 1 30
+
 ==>
 
 Tableau 2
@@ -327,9 +111,9 @@ Tableau 2
 
 Select the next negative objective value as the next pivot colum otherwise stop
 
-C2
+pc = col 2
 
-By inspection rhs/entering variable 4/3,30/5=6,15/0=15 so C2R1 is the pivot element
+By inspection rhs/entering variable 4/3,30/5=6,15/0=15 so col 2 row 1 is the pivot element.
 
 0 0 1 -3/5 -2/5 0 -14   R1-3R2
 
@@ -342,24 +126,11 @@ x0 = 5
 x1 = 4
 x4 = 8
 
-max = [15,94/3] TBD almost certainly WRONG!
-
  SIAM Review, 1995, Vol. 37, No. 2 : pp. 230-234
 
 A Nonlinear Programming Algorithm for Hospital Management
 Frank H. Mathis and Lenora Jane Mathis
 (doi: 10.1137/1037046)
-
--- The 3 most important writings of the 2016 US election
-
-Peggy Noonan, the protected and the unprotected, WSJ
-Ross Baufit Democrat, Samantha B column - cultural left NYT
-J.D. Vance, Hillbilly Elegy
-
-pressthink blog
-
-out-in whitehouse sources guarded.
-in-out more likely to be mislead.
 
 http://scicomp.stackexchange.com/questions/772/what-are-the-advantages-disadvantages-of-interior-point-methods-over-simplex-met
 
@@ -427,9 +198,8 @@ http://www.hec.ca/en/cam/help/topics/The_steps_of_the_simplex_algorithm.pdf
 http://www.ams.org/notices/200703/fea-gale.pdf
 http://math.uww.edu/~mcfarlat/s-prob.htm
 http://web.stanford.edu/~yyye/SimplexMDP3.pdf
-> module LPTests where
 
->-- Test tableau 0
+## Tests
 
 1) Maximise x + 2y
    Subject to:
@@ -743,7 +513,7 @@ pci = 2
 pri = 3
 
 x = 2
-y = 3 WRONG
+y = 3
 p = 9
 
 > m731b = [[0,1,0,   1,1/3, 5] -- r0 + r3''*1/3

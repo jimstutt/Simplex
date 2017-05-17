@@ -32,7 +32,7 @@ So the pivot element is col 3 row 2 == 1.
 
 Clear the pivot column.
 
-This is already in row eschelon form.
+This is already in row echelon form.
 
 > t2 = [[2,6,0, 0, 4,0, 1,40]] -- p + 4s2
 
@@ -203,10 +203,15 @@ http://web.stanford.edu/~yyye/SimplexMDP3.pdf
 
 ## Tests
 
-1) Maximise x + 2y
-   Subject to:
-     2x + y <= 4 -- 5/2 < 4   ok
-     x + 2y <= 5 -- 2*5/2 = 5 ok
+(1) Maximise:
+
+> x + 2y
+
+Subject to:
+
+> 2x + y <= 4 -- 5/2 < 4   ok
+
+> x + 2y <= 5 -- 2*5/2 = 5 ok
 
 x = 0 
 y = 5/2
@@ -232,19 +237,26 @@ x = 0
 y = 5/2
 p = 5
 
-2) Maximise x + y -- 7/3
-   Subject to:
-     2x + y <= 4  -- 2*5/3 + 2/3 = 12/3 = 4 ok
-      x + 2y <= 3  -- 5/3 + 2*2/3 = 9/3 = 3 ok
+(2) Maximise:
+
+> x + y -- 7/3
+
+Subject to:
+
+> 2x + y <= 4  -- 2*5/3 + 2/3 = 12/3 = 4 ok
+ 
+>  x + 2y <= 3  -- 5/3 + 2*2/3 = 9/3 = 3 ok
 
 > m2 =[[-1,-1,0,0,1, 0]
+
 >      ,[ 2, 1,1,0,0, 4]  -- 4/2 = 2*
+
 >      ,[ 1, 2,0,1,0, 3]]::[[Rational]]
 
-pivCol = 0
-pivRow = 1
-pivRowCoeff = 2
-pivElt = 2
+pci = 0
+pri = 1
+prc = 2
+pe = 2
 
 x = 5/3 ok
 y = 2/3 ok
@@ -281,7 +293,7 @@ p = 7/3 ok
 
 >       ,[2,  1, 1, 0, 0, 8]]::[[Rational]]
 
-3) Max 3x+y      -- p = 11 not 14 NO!
+(3) Max 3x+y      -- p = 11 not 14 NO!
    Subject to:
      2x + y  <=  8 -- 2*4 +   0 =  8 ok
      2x + 3y <= 12 -- 2*4 + 3*0 <= 12 ok
@@ -304,7 +316,7 @@ pe = 2
 >       ,[0,  1, 1/2, 1/2, 0,  4] -- r*1/2      -- 14/1/2 = 8 
 >       ,[0,  0,   2,  -1, 1,  4]]::[[Rational]] -- r2 - r1 -- 4/2 = 2 pr *
 
-4) Max 2x - 3y + 4z
+(4) Max 2x - 3y + 4z
    Subject to:
      4x - 3y + z <= 3  -- 4*0 - 3*0 + 3 ==  3 ok
       x +  y + z <= 10 --   0 +   0 + 3 ==  3 ok
@@ -355,7 +367,7 @@ y = 7/4
 z = 33/4
 p = 111/4
 
-5) Max x+2y-z
+(5) Max x+2y-z
    Subject to:
      2x+y+z=14    2*5 + 4  - 0    = 14 ok
      4x+2y+3z=28  4*5 + 2*4 + 3*0 = 28 ok
@@ -399,7 +411,7 @@ y = 4
 z = 0
 p = 13
 
-6) Max. 2x + y
+(6) Max. 2x + y
    Subject to:
      2x + 3y = 34 -- 2*5 + 3*8 = 34 ok
       x + 5y = 45 --   5 + 5*8 = 45 ok

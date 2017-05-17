@@ -1,0 +1,171 @@
+-- # Birmingham Green Commission
+
+* https://www.theccc.org.uk/2016/06/30/ccc-welcomes-government-backing-for-fifth-carbon-budget-and-continued-ambition-to-meet-2050-target/
+
+According to provisional figures for 2015 in the UK government CCC's fifth carbon budget (2015) show that UK emissions are 38% below 1990 levels. 
+
+The UK government has committed to reduce UK emissions by 57% by 2030.
+
+The UK has a legal requirement under the 2008 Climate Chgange Act is to reduce emissions by at least 80% by 2050 compared to 1990 levels.
+
+This gives an emissions limit of 1,765 MtCO2e over the period 2028-2032 including emissions from international shipping. This is an emissions reduction of 57% on 1990 levels. 
+
+If international shipping emissions were excluded then an emission limit of 1,725 MtCO2e would be appropriate over the period 2028-2032. 
+
+* https://www.gov.uk/government/publications/decc-single-departmental-plan-2015-to-2020/single-departmental-plan-2015-to-2020
+
+A new domestic energy efficiency supplier obligation will run for 5 years. 
+
+"The new scheme will upgrade the energy efficiency of over 200,000 homes per year, saving those homes up to £300 off their annual energy bill".
+
+Q. How many UK homes could be insulated?
+Q. How many domestic boilers could be replaced?
+
+Maximise carbon reduction per £.
+
+-- ## Totals
+
+Stock penetration of A+ and better "wet" appliances (%)
+
+> mm1 = 14
+
+Low carbon heat deployment by 2020 (%)
+
+> mm2 = 12
+
+Birmingham and Solihull LEP
+
+Energy bill 2012 (£bn)
+
+> bs1 = 3.38
+
+Max possble investment (£bn)
+
+> bs2 = 2.34
+
+Energy bill savings
+
+> bs3 = 604
+
+Jobs created
+
+> bs4 = 1009
+
+Carbon reduction 1990-2022 (%)
+
+> bs5 = -43.63
+
+Carbon reduction 1990-2027 (%)
+
+> bs6 = -50.59%
+
+Total emissions reduction
+
+> x1 >= 0.35
+
+Realistic energy reduction potential
+
+> x2 >= 0.58
+
+CO2 reduction
+
+> x3 >= 0.161
+
+Total investment (£)
+
+> x4 <= 8100000000
+
+Total annual savings (£)
+
+> x5 <= 1300000000
+
+-- ## Domestic
+
+Capital cost of domestic measures (£)
+
+> x6 <= 450000000
+
+Annual domestic measures savings (£)
+
+> x7 <= 385000000
+
+Domestic cost-effective measures
+
+> x8 <= 0
+
+Domestic cost-neutral measures
+
+> x9 <= 0
+
+Annual domestic carbon reduction potential
+
+> x10 >=  0 -- DONT FUCKING KNOW!!!!!!!111aaaRGGGGHHH!!!!!
+
+-- ## Commercial
+
+Capital cost of commercial measures (£)
+
+> x11 <= 450,000,000
+
+Annual commercial measures savings (£) potential
+
+> x12 <= 385,000,000
+
+Commercial cost-effective measure costs
+
+> x13 <= 0
+
+Commercial cost-neutral measure costs
+
+> x14 <= 0
+
+Annual commercial carbon reduction potential
+
+> x15 >= 0 --  DONT FUCKING KNOW!!!!!!!111aaaRGGGGHHH!!!!!
+
+-- ## Industrial
+
+Capital cost of domestic measures (£)
+
+> x16 <= 450,000,000
+
+Annual industrial measures savings (£)
+
+> x17 <= 0
+
+Industrial cost-effective measures
+
+> x18 <= 0
+
+Industrial cost-neutral measures
+
+> x19 <= 0
+
+Annual industrial carbon reduction potential
+
+> x20 >=  0 -- DONT FUCKING KNOW!!!!!!!111aaaRGGGGHHH!!!!!
+
+-- ## Transport
+
+Capital cost of transport measures (£)
+
+> x21 <= 0
+
+Annual transport measures savings (£) potential
+
+> x22 <= 0
+
+Transport cost-effective measure costs
+
+> x23 <= 0
+
+Transport  cost-neutral measure costs
+
+> x24 <= 0
+
+Annual transport carbon reduction potential
+
+> x25 >= 0 --  DONT FUCKING KNOW!!!!!!!111aaaRGGGGHHH!!!!!
+
+-- ## Domestic measures
+

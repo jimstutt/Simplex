@@ -1,0 +1,114 @@
+-- # Birmingham Green Commission goals
+
+-- ## Totals
+
+Total emissions reduction
+
+> x1 >= 0.35
+
+Realistic energy reduction potential
+
+> x2 >= 0.58
+
+CO2 reduction
+
+> x3 >= 0.161
+
+Total investment (£)
+
+> x4 <= 8,100,000,000
+
+Total annual savings (£)
+
+> x5 <= 1,300,000,000
+
+-- ## Domestic
+
+Capital cost of domestic measures (£)
+
+> x6 <= 450,000,000
+
+Annual domestic measures savings (£)
+
+> x7 <= 385,000,000
+
+Domestic cost-effective measures
+
+> x8 <= 0
+
+Domestic cost-neutral measures
+
+> x9 <= 0
+
+Annual domestic carbon reduction potential
+
+> x10 >=  0 -- DONT FUCKING KNOW!!!!!!!111aaaRGGGGHHH!!!!!
+
+-- ## Commercial
+
+Capital cost of commercial measures (£)
+
+> x11 <= 450,000,000
+
+Annual commercial measures savings (£) potential
+
+> x12 <= 385,000,000
+
+Commercial cost-effective measure costs
+
+> x13 <= 0
+
+Commercial cost-neutral measure costs
+
+> x14 <= 0
+
+Annual commercial carbon reduction potential
+
+> x15 >= 0 --  DONT FUCKING KNOW!!!!!!!111aaaRGGGGHHH!!!!!
+
+-- ## Industrial
+
+Capital cost of domestic measures (£)
+
+> x16 <= 450,000,000
+
+Annual industrial measures savings (£)
+
+> x17 <= 0
+
+Industrial cost-effective measures
+
+> x18 <= 0
+
+Industrial cost-neutral measures
+
+> x19 <= 0
+
+Annual industrial carbon reduction potential
+
+> x20 >=  0 -- DONT FUCKING KNOW!!!!!!!111aaaRGGGGHHH!!!!!
+
+-- ## Transport
+
+Capital cost of transport measures (£)
+
+> x21 <= 0
+
+Annual transport measures savings (£) potential
+
+> x22 <= 0
+
+Transport cost-effective measure costs
+
+> x23 <= 0
+
+Transport  cost-neutral measure costs
+
+> x24 <= 0
+
+Annual transport carbon reduction potential
+
+> x25 >= 0 --  DONT FUCKING KNOW!!!!!!!111aaaRGGGGHHH!!!!!
+
+-- ## Domestic measures
+

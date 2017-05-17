@@ -5,13 +5,13 @@ import Data.List
 import Data.Maybe
 import Data.Ratio
 
-loop m = do
+simplex m = do
   let ris  = [0..((length m) - 1)]
       pre  = takeWhile (< (pri m)) ris
       post = takeWhile (> (pri m)) $ (drop 1 . dropWhile (< (pri m))) ris
       m1   = orderedAdd pre post ris m
   if (hasNeg (m1!!0))
-    then loop m1
+    then simplex m1
     else m1
 
 pci m     = fromJust $ elemIndex (minimum (m!!0)) (m!!0)

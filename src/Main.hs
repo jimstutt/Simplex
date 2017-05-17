@@ -2,7 +2,7 @@ module Main where
 
 import Data.List
 import System.IO
-import SimplexLib
+import Simplex
 import LPTests
 
 main :: IO ()
@@ -14,7 +14,7 @@ main = do
   putStr "m2 x,y,p = "
   print $ reverse $ last $ transpose $ simplex m2
   putStrLn "(3) Max 3x+y"  
-  putStr "m3 x,y,p = "
+  putStr "m3 x,y,p = 3 vars and unrestricted not yet done! Ignore the rest!"
   print $ reverse $ last $ transpose $ simplex m3
   putStrLn "(4) Max 2x - 3y + 4z"
   putStr "m4 x,y,z,p = "
@@ -57,8 +57,22 @@ z m
      isDegenerate t -> _  
 -}
 
-m7 = [[1,-2, 2,-4, 0, 0, 0,  0]
-     ,[0, 4, 3, 1, 1, 0, 0,  3]                -- s1  
-     ,[0, 1, 1, 1, 0, 1, 0, 10]                -- s2 *
-     ,[0, 2, 1,-1, 0, 0, 1, 10]]::[[Rational]] -- s3
+{-
+Maximise 2x - y + 4z -- 4 - 7 + 5 = 2 
+Subject to:
+  3x + 3y + z = 32 -- 6 + 21 + 5 = 32 
+   x +  y + z = 14 -- 2 + 7 + 5 = 14
+  2x +  y - z = 6  -- 4 + 7 - 5 = 6
+
+x = 2
+y = 7
+z = 5
+p = 
+-}
+
+
+m7 = [[1,-2, 1,-4, 0, 0, 0,  0]
+     ,[0, 4, 3, 1, 1, 0, 0, 32]               -- s1  
+     ,[0, 1, 1, 1, 0, 1, 0, 14]               -- s2 *
+     ,[0, 2, 1,-1, 0, 0, 1, 6]]::[[Rational]] -- s3
 

@@ -34,13 +34,13 @@ Clear the pivot column.
 
 This is already in row echelon form.
 
-> t2 = [[2,6,0, 0, 4,0, 1,40]] -- p + 4s2
+>  t2 = [[2,6,0, 0, 4,0, 1,40]] -- p + 4s2
 
->      ,[3,2,0, 1,-1,0, 0,-7]  -- s1 - s2
+>       ,[3,2,0, 1,-1,0, 0,-7]  -- s1 - s2
 
->      ,[1,1,1, 0, 1,0, 0,10]  -- s2 => z
+>       ,[1,1,1, 0, 1,0, 0,10]  -- s2 => z
 
->      ,[3,2,0, 0, 1,1, 0,20]] -- s3 + s2
+>       ,[3,2,0, 0, 1,1, 0,20]] -- s3 + s2
 
 The columns with only 1 non-zero value (active variables) are:
 
@@ -63,22 +63,24 @@ Ax = b
    Ax       b
 
 [[2,3]  = [[34]
+
 ,[1,5]  = ,[45]
+
 ,[1,0]] = ,[15]] 
 
  x = [x1,x2]
 
 Tableau 1
 
->   x1 x2 s1 s2 s3  p  b
+>    x1 x2 s1 s2 s3  p  b
 
-> s1 2   3 1  0  0  0  34 
+>  s1 2   3 1  0  0  0  34 
 
-> s2 1   5 0  1  0  0  45
+>  s2 1   5 0  1  0  0  45
 
-> s3 1   0 0  0  1  0  15
+>  s3 1   0 0  0  1  0  15
 
-> p -2  -1 0  0  0  1  0
+>  p -2  -1 0  0  0  1  0
 
 Select the pivot column as the most negative value of the p row excluding column b.
 
@@ -126,11 +128,9 @@ By inspection rhs/entering variable 4/3,30/5=6,15/0=15 so col 2 row 1 is the piv
 
 > 0 0 0 1/5  2 14/5 1 36 R4+R2
 
-> x0 = 5
-
-> x1 = 4
-
-> x4 = 8
+x0 = 5
+x1 = 4
+x4 = 8
 
 * SIAM Review, 1995, Vol. 37, No. 2 : pp. 230-234
 * A Nonlinear Programming Algorithm for Hospital Management, Frank H. Mathis and Lenora Jane Mathis (doi: 10.1137/1037046)
@@ -293,10 +293,10 @@ p = 7/3 ok
 
 >       ,[2,  1, 1, 0, 0, 8]]::[[Rational]]
 
-(3) Max 3x+y      -- p = 11 not 14 NO!
-   Subject to:
-     2x + y  <=  8 -- 2*4 +   0 =  8 ok
-     2x + 3y <= 12 -- 2*4 + 3*0 <= 12 ok
+(3) Max 3x+y        -- p = 12?
+    Subject to:
+      2x + y  <=  8 -- 2*4 +   0 =  8 ok
+      2x + 3y <= 12 -- 2*4 + 3*0 <= 12 ok
 
 x = 4
 y = 0
@@ -474,14 +474,14 @@ pri = 3
 
 >       ,[1,0,0,-1/14, 5/14,0,5]]::[[Rational]]
 
-7.1.1) Max. 2x - 3y
+(7) Max. 2x - 3y
 Subject to:
   x - 3y + 2z = <= 3
  -x + 2y >= 2
  
 http://mat.gsia.cmu.edu/classes/QUANT/NOTES/chap7.pdf
 
-> m711 = [[1,2, 3,0,0, 0,0]
+> m7 = [[1,2, 3,0,0, 0,0]
 >        ,[0, -1,-3,2,1, 0,3] -- r * 1
 >        ,[0,1, 2,0,0, 1,2]]::[[Rational]]
 
@@ -490,13 +490,13 @@ pri = 1
 
 Need to split the "unrestricted variable" x into x = x' - x''.
 
-> m711a = [[1,-2, 2, 3,0,0, 0, 0]
+> m7a = [[1,-2, 2, 3,0,0, 0, 0]
 
 >         ,[0, 1,-1,-3,2,1, 0, 3] -- pr *
 
 >         ,[0,-1, 1, 2,0,0, 1, 2]]::[[Rational]]
 
-> m711b = [[1,0, 0,-3,4,2,0,6] -- r0 + 2r1
+> m7b = [[1,0, 0,-3,4,2,0,6] -- r0 + 2r1
 
 >         ,[0,1,-1,-3,2,1,0,3] -- r1 * 1
 
@@ -505,12 +505,12 @@ Need to split the "unrestricted variable" x into x = x' - x''.
 pci = 3
 pri = NOO1212
 
-7.2.1) Max x + y CORRECT
+(8) Max x + y CORRECT
 Subject to:
  2x + y  = 4
   x + 2y = 3
 
-> m721 = [[1,-1,-1,0,0,0]
+> m8 = [[1,-1,-1,0,0,0]
 
 >        ,[0, 2, 1,1,0,4]
 
@@ -523,7 +523,7 @@ y = 2/3 ok
 pci = 1
 pri = 1
 
-> m721a = [[1,0,-1/2,-1/2,0,2] -- r0 + r1' WRONG
+> m8a = [[1,0,-1/2,-1/2,0,2] -- r0 + r1' WRONG
 
 >         ,[0,1, 1/2, 1/2,0,2] -- r1*1/2
 
@@ -532,12 +532,12 @@ pri = 1
 p = 4
 x = 3/2
 
-Ex. 62) Max 4x + y + z
-Subject to:
-  x + 3z <= 6
- 3x + y + 3z <= 9
+(9) Max 4x + y + z
+    Subject to:
+       x + 3z      <= 6
+      3x +  y + 3z <= 9
 
-> m62 = [[1,-4,-1,1,0,0,0]
+> m9 = [[1,-4,-1,1,0,0,0]
 
 >       ,[0, 1, 0,3,1,0,6]
 
@@ -555,7 +555,7 @@ pri = 2
 p = 12
 x = 3
 
-7.3.1) Max. 2x + y
+(10) Max. 2x + y
 
 Subject to:
 
@@ -563,7 +563,7 @@ Subject to:
    x - y <= 2
        y <= 3
 
-> m731 = [[1,-2,-1,0,0,0,0]
+> m10 = [[1,-2,-1,0,0,0,0]
 
 >        ,[0, 3, 1,1,0,0,6]
 
@@ -576,7 +576,7 @@ By hand:
 pci = 1
 pri = 1 -- could be 2 as tied.
 
-> m731a = [[1,0,-1/3, 2/3,0,4] -- r0 + 2r1'
+> m10a = [[1,0,-1/3, 2/3,0,4] -- r0 + 2r1'
 
 >         ,[0,1, 1/3, 1/3,0,2] -- r1'
 
@@ -587,7 +587,7 @@ pri = 1 -- could be 2 as tied.
 pci = 2
 pri = 3
 
-> m731b = [[0,1,0,   1,1/3, 5] -- r0 + r3''*1/3
+> m10b = [[0,1,0,   1,1/3, 5] -- r0 + r3''*1/3
 
 >         ,[0,1,0, 1/3, -1,-1] -- r1 - r3
 

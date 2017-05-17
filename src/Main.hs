@@ -24,17 +24,17 @@ main = do
   print $ reverse $ last $ transpose $ simplex m5 
   putStrLn "(6) Max. 2x + y"
   putStr "m6 x,y,z,p = "
-  print $ reverse $ last $ transpose $ simplex m6
+  print $ res m6 -- reverse $ last $ transpose $ simplex m6
   putStrLn "(7) Max. 2x - 2y + 4z"  
-  putStr "m7 x,y,z,p = "
-  print $ reverse $ last $ transpose $ simplex m7
+  putStrLn "m7 x,y,z,p = UNFEASIBLE?"
+--  print $ reverse $ last $ transpose $ simplex m7
+  putStr "(8) Max. 2x - 3y"
+  print $5
+  putStrLn "(9) Max. x + y"
+  putStrLn "(10) Max. 4x + y + z"
+  putStrLn "(11) Max. 2x + y"
 
-{-
-7.1.1) Max. 2x - 3y
-7.2.1) Max x + y
-Ex. 62) Max 4x + y + z
-7.3.1) Max. 2x + y
--}
+res = reverse . last . transpose . simplex
 
 {-x :: forall a. (Num a, Eq a) => [[[a]]] -> [a]
 x m
@@ -57,22 +57,4 @@ z m
      isDegenerate t -> _  
 -}
 
-{-
-Maximise 2x - y + 4z -- 4 - 7 + 5 = 2 
-Subject to:
-  3x + 3y + z = 32 -- 6 + 21 + 5 = 32 
-   x +  y + z = 14 -- 2 + 7 + 5 = 14
-  2x +  y - z = 6  -- 4 + 7 - 5 = 6
-
-x = 2
-y = 7
-z = 5
-p = 
--}
-
-
-m7 = [[1,-2, 1,-4, 0, 0, 0,  0]
-     ,[0, 4, 3, 1, 1, 0, 0, 32]               -- s1  
-     ,[0, 1, 1, 1, 0, 1, 0, 14]               -- s2 *
-     ,[0, 2, 1,-1, 0, 0, 1, 6]]::[[Rational]] -- s3
 

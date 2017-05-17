@@ -27,13 +27,16 @@ main = do
   print $ res m6 
   putStrLn "(7) Max. 2x - 2y + 4z"  
   putStrLn "m7 x,y,z,p = INFEASIBLE?"
---  print $ reverse $ last $ transpose $ simplex m7
-  putStr "(8) Max. 2x - 3y"
-  print $5
+--  print $ res m7
+  putStrLn "(8) Max. 2x - 3y"
+  print $ res m8
   putStrLn "(9) Max. x + y"
+  print $ res m9
   putStrLn "(10) Max. 4x + y + z"
+  print $ res m10
   putStrLn "(11) Max. 2x + y"
-
+  print $ res m11
+  
 res = reverse . last . transpose . simplex
 
 {-x :: forall a. (Num a, Eq a) => [[[a]]] -> [a]

@@ -9,24 +9,24 @@ main :: IO ()
 main = do
   putStrLn "(1) Maximise x + 2y"
   putStr "m1 x,y,p = "
-  print $ reverse $ last $ transpose $ simplex m1
+  print $ res m1
   putStrLn "(2) Maximise x + y"
   putStr "m2 x,y,p = "
-  print $ reverse $ last $ transpose $ simplex m2
+  print $ res m2
   putStrLn "(3) Max 3x+y"  
   putStr "m3 x,y,p = 3 vars and unrestricted not yet done! Ignore the rest!"
-  print $ reverse $ last $ transpose $ simplex m3
+  print $ res m3
   putStrLn "(4) Max 2x - 3y + 4z"
   putStr "m4 x,y,z,p = "
-  print $ reverse $ last $ transpose $ simplex m4
+  print $ res m4
   putStrLn "(5) Max x + 2y - z"
   putStr "m5 p,x,y,z,p = "
-  print $ reverse $ last $ transpose $ simplex m5 
+  print $ res m5 
   putStrLn "(6) Max. 2x + y"
   putStr "m6 x,y,z,p = "
-  print $ res m6 -- reverse $ last $ transpose $ simplex m6
+  print $ res m6 
   putStrLn "(7) Max. 2x - 2y + 4z"  
-  putStrLn "m7 x,y,z,p = UNFEASIBLE?"
+  putStrLn "m7 x,y,z,p = INFEASIBLE?"
 --  print $ reverse $ last $ transpose $ simplex m7
   putStr "(8) Max. 2x - 3y"
   print $5

@@ -7,92 +7,34 @@ import LPTests
 
 main :: IO ()
 main = do
-  r1 <- res2 m1
-  putStr "m1 x = "
-  print $ fst $ fst r1
-  putStr "m1 y = "
-  print $ snd $ fst r1
-  putStr "m1 p = "
-  print $ snd r1
-  r2 <- res2 $ simplex m2
-  putStr "m2 x = "
-  print $ fst $ fst r2
-  putStr "m2 y = "
-  print $ snd $ fst r2
-  putStr "m2 p = "
-  print $ snd r2
-  r2a <- res2 $ simplex m2a
-  putStr "m2a x = "
-  print $ fst $ fst r2a
-  putStr "m2a y = "
-  print $ snd $ fst r2a
-  putStr "m2a p = "
-  print $ snd r2a
-  r3 <- res2 $ simplex m3
-  putStr "m3 x = "
-  print $ fst $ fst r3
-  putStr "m3 y = "
-  print $ snd $ fst r3
-  putStr "m3 p = "
-  print $ snd r3
-  r4 <- res3 $ simplex m4
-  putStr "m4 x = "
-  print $ fst $ fst r4
-  putStr "m4 y = "
-  print $ snd $ fst r4
-  putStr "m4 z = "
-  print $ snd $ fst r4
-  putStr "m4 p = "
-  print $ snd r4
-  r5 <- res3 $ simplex m5
-  putStr "m5 x = "
-  print $ fst $ fst r5
-  putStr "m5 y = "
-  print $ snd $ fst r5
-  putStr "m5 z = "
-  print $ snd $ fst r5
-  putStr "m5 p = "
-  print $ snd r5
-  r5a <- res3 $ simplex m5a
-  putStr "m5a x = "
-  print $ fst $ fst r5a
-  putStr "m5a y = "
-  print $ snd $ fst r5a
-  putStr "m5a z = "
-  print $ snd $ fst r5a
-  putStr "m5a p = "
-  print $ snd r5a
-  r6 <- res3 $ simplex m6
-  putStr "m6 x = "
-  print $ fst $ fst r6
-  putStr "m6 y = "
-  print $ snd $ fst r6
-  putStr "m6 z = "
-  print $ snd $ fst r6
-  putStr "m6 p = "
-  print $ snd r6
+  putStrLn "(1) Maximise x + 2y"
+  putStr "m1 x,y,p = "
+  print $ reverse $ last $ transpose $ simplex m1
+  putStrLn "(2) Maximise x + y"
+  putStr "m2 x,y,p = "
+  print $ reverse $ last $ transpose $ simplex m2
+  putStrLn "(3) Max 3x+y"  
+  putStr "m3 x,y,p = "
+  print $ reverse $ last $ transpose $ simplex m3
+  putStrLn "(4) Max 2x - 3y + 4z"
+  putStr "m4 x,y,z,p = "
+  print $ reverse $ last $ transpose $ simplex m4
+  putStrLn "(5) Max x + 2y - z"
+  putStr "m5 p,x,y,z,p = "
+  print $ reverse $ last $ transpose $ simplex m5 
+  putStrLn "(6) Max. 2x + y"
+  putStr "m6 x,y,z,p = "
+  print $ reverse $ last $ transpose $ simplex m6
+  putStrLn "(7) Max. 2x - 2y + 4z"  
+  putStr "m7 x,y,z,p = "
+  print $ reverse $ last $ transpose $ simplex m7
 
-res2 :: (Monad m, Eq a, Num a) => [[a]] -> m (([a],[a]),[a])
-res2 m = do
-  let hasX = not (null (filter (==1) ((transpose m)!!0))) -- x col has a 1 at pos n
-      x = (take 1 . drop ((length (m!!0))-1)) (m!!1) 
-      hasY = not (null (filter (==1) ((transpose m)!!1))) -- y col has a 1 at pos m
-      y = (take 1 . drop ((length (m!!0))-1)) (m!!2)
-      p = m!!0!!((length (m!!0)-1))
-  return ((x,y),[p])
-
-res3 :: (Monad m, Eq a, Num a) => [[a]] -> m ((([a],[a]),[a]),[a])
-res3 m = do
-  let hasX = not (null (filter (==1) ((transpose m)!!0))) -- x col has a 1 at pos p
-      x = ((take 1 . drop ((length m)-1))) (m!!1)
-      hasY = not (null (filter (==1) ((transpose m)!!1))) -- y col has a 1 at pos 1
-      y =  ((take 1 . drop ((length m)-1))) (m!!2)
-      hasZ = not (null (filter (==1) ((transpose m)!!2)))  -- z col has a 1 at pos r
-      z =  ((take 1 . drop ((length m)-1))) (m!!3)
-      p = m!!0!!((length (m!!0)-1)) -- s
-  return (((x,y),z),[p])
-
--- res3 m = (x m, y m, z m)
+{-
+7.1.1) Max. 2x - 3y
+7.2.1) Max x + y
+Ex. 62) Max 4x + y + z
+7.3.1) Max. 2x + y
+-}
 
 {-x :: forall a. (Num a, Eq a) => [[[a]]] -> [a]
 x m
@@ -115,7 +57,8 @@ z m
      isDegenerate t -> _  
 -}
 
-t1 = [[1,-2, 2,-4, 0, 0, 0,  0]
-      ,[0, 4, 3, 1, 1, 0, 0,  3]                -- s1  
-      ,[0, 1, 1, 1, 0, 1, 0, 10]                -- s2 *
-      ,[0, 2, 1,-1, 0, 0, 1, 10]]::[[Rational]] -- s3
+m7 = [[1,-2, 2,-4, 0, 0, 0,  0]
+     ,[0, 4, 3, 1, 1, 0, 0,  3]                -- s1  
+     ,[0, 1, 1, 1, 0, 1, 0, 10]                -- s2 *
+     ,[0, 2, 1,-1, 0, 0, 1, 10]]::[[Rational]] -- s3
+

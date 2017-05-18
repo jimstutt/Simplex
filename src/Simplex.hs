@@ -1,4 +1,4 @@
-module Simplex where
+module Simplex (simplex) where
 
 import Control.Monad
 import Data.List

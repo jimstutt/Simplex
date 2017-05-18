@@ -18,10 +18,9 @@ main = do
   putStrLn "(3) Max 3x+y => WRONG!"  
   putStr "m3 x,y,p = "
   print $ res m3
-  putStrLn "(4) Max 2x - 3y + 4z => WRONG!"
+  putStrLn "(4) Max 2x - 3y + 4z => ok"
   putStrLn "m4 x,y,z,p = "
-  
---  print $ res3 m4
+  print $ res m4
   putStrLn "(5) Max x + 2y - z => ok"
   putStr "m5 p,x,y,z,p = "
   print $ res m5 
@@ -40,7 +39,15 @@ main = do
   putStrLn "(11) Max. 2x + y => WRONG!"
   print $ res m11
 
-res m = filter (>0) (reverse $ last $ transpose $ simplex m)
+--rows :: [[Rational]] -> IO ()
+rows m = do
+  i <- [0..3]
+  let ris = ((transpose $ simplex m)!!i)
+  return ris
+--  let rs = filter (==1) $ filter (>0) ris -- (take 4 (fmap toInteger (transpose $ simplex m)!!i))
+--  fmap print rs
+
+res m = ((last $ transpose $ simplex m)) -- <$> (concat $ rows m)
 
 {- test t = case t of
      isUnbounded t -> _

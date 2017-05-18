@@ -1,8 +1,10 @@
 module Main where
 
+import Control.Monad
 import Data.List
+import Data.Maybe
 import System.IO
-import Simplex
+import Simplex (simplex)
 import LPTests
 
 main :: IO ()
@@ -17,8 +19,9 @@ main = do
   putStr "m3 x,y,p = "
   print $ res m3
   putStrLn "(4) Max 2x - 3y + 4z => WRONG!"
-  putStr "m4 x,y,z,p = "
-  print $ res m4
+  putStrLn "m4 x,y,z,p = "
+  
+--  print $ res3 m4
   putStrLn "(5) Max x + 2y - z => ok"
   putStr "m5 p,x,y,z,p = "
   print $ res m5 
@@ -36,22 +39,8 @@ main = do
   print $ res m10
   putStrLn "(11) Max. 2x + y => WRONG!"
   print $ res m11
-  
-res = reverse . last . transpose . simplex
 
-{-x :: forall a. (Num a, Eq a) => [[[a]]] -> [a]
-x m
-   | length (filter (== 1) ((transpose m)!!0)) > 0 = ((take 1 . drop ((length m)-1)))(m!!0!!((length m)-1))
-   | otherwise = 0
-   
-y m
-   | length (filter (== 1) ((transpose m)!!1)) > 0 = ((take 1 . drop ((length m)-1)))(m!!1!!((length m)-1))
-   | otherwise = 0
-
-z m
-   | length (filter (== 1) ((transpose m)!!2)) > 0 = ((take 1 . drop ((length m)-1)))(m!!2!!((length m)-1))
-   | otherwise = 0
--}
+res m = filter (>0) (reverse $ last $ transpose $ simplex m)
 
 {- test t = case t of
      isUnbounded t -> _

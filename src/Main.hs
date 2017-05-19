@@ -43,9 +43,9 @@ main = do
 rows m = do
   i <- [0..3]
   let ris = ((transpose $ simplex m)!!i)
-  return ris
---  let rs = filter (==1) $ filter (>0) ris -- (take 4 (fmap toInteger (transpose $ simplex m)!!i))
---  fmap print rs
+--  return ris
+  let rs = filter (==1) $ filter (>0) ris -- (take 4 (fmap toInteger (transpose $ simplex m)!!i))
+  fmap print rs
 
 res m = ((last $ transpose $ simplex m)) -- <$> (concat $ rows m)
 

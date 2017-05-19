@@ -48,7 +48,7 @@ cids ris
   | not $ null (filter (==1) (snd $ head $ ris)) = (fst $ head $ ris) : cids (tail ris)
   | otherwise = []
   
-res m = ((last $ transpose $ simplex m)!!) <$> (cids $ rows m)
+res m = reverse $ ((last $ transpose $ simplex m)!!) <$> (cids $ rows m)
 
 {- test t = case t of
      isUnbounded t -> _

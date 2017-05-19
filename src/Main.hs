@@ -36,8 +36,8 @@ main = do
   print $ res m9
   putStrLn "(10) Max. 4x + y + z => ok"
   print $ res m10
-  putStrLn "(11) Max. 2x + y => WRONG!"
-  print $ res m11
+--  putStrLn "(11) Max. 2x + y => WRONG!"
+--  print $ res m11
 
 --rows :: [[Rational]] -> IO ()
 rows m = do
@@ -45,7 +45,7 @@ rows m = do
   return $ (i,take 4 ((transpose $ simplex m)!!i))
 
 cids ris
-  | not $ null (filter (==1) (snd $ head $ ris)) = (fst $ head $ ris) : cids (tail ris)
+  | (not $ null (filter (==1) (snd $ head $ ris))) = (fst $ head $ ris) : cids (tail ris)
   | otherwise = []
   
 res m = reverse $ ((last $ transpose $ simplex m)!!) <$> (cids $ rows m)

@@ -27,8 +27,8 @@ main = do
   putStrLn "(6) Max. 2x + y  => ok"
   putStr "m6 x,y,z,p = "
   print $ res m6 
-  putStrLn "(7) Max. 2x - 2y + 4z"  
-  putStrLn "m7 x,y,z,p = INFEASIBLE?"
+--  putStrLn "(7) Max. 2x - 2y + 4z"  
+--  putStrLn "m7 x,y,z,p = INFEASIBLE?"
 --  print $ res m7
   putStrLn "(8) Max. 2x - 3y => ok"
   print $ res m8
@@ -39,7 +39,6 @@ main = do
 --  putStrLn "(11) Max. 2x + y => WRONG!"
 --  print $ res m11
 
---rows :: [[Rational]] -> IO ()
 rows m = do
   i <- [0..3]
   return $ (i,take 4 ((transpose $ simplex m)!!i))

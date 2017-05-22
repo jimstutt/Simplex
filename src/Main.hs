@@ -4,8 +4,8 @@ import Control.Monad
 import Data.List
 import Data.Maybe
 import System.IO
-import Simplex (simplex)
-import LPTests
+import Simplex
+import Tests
 
 main :: IO ()
 main = do
@@ -38,22 +38,4 @@ main = do
   print $ res m10
 --  putStrLn "(11) Max. 2x + y => WRONG!"
 --  print $ res m11
-
-rows m = do
-  i <- [0..3]
-  return $ (i,take 4 ((transpose $ simplex m)!!i))
-
-cids ris
-  | (not $ null (filter (==1) (snd $ head $ ris))) = (fst $ head $ ris) : cids (tail ris)
-  | otherwise = []
-  
-res m = reverse $ ((last $ transpose $ simplex m)!!) <$> (cids $ rows m)
-
-{- test t = case t of
-     isUnbounded t -> _
-     isUnique t -> _
-     isMultiple t -> _
-     isDegenerate t -> _  
--}
-
 

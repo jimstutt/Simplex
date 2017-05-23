@@ -53,13 +53,37 @@ Jobs created
 
 Carbon reduction 1990-2022 (%)
 
-> bs5 = -43.63
+> bs5 = (-43.63)
 
 Carbon reduction 1990-2027 (%)
 
-> bs6 = -50.59%
+> bs6 = (-50.59)
 
-Total emissions reduction
+Background trends, including increases in carbon and energy intensity of GDP (%) 1990-2022
+
+> bs7 = 14
+
+Energy price increase deman reduction (%) 1990-2022
+
+> bs8 = 8
+
+National grid reduction (%) 1990-2022
+
+> bs = 13
+
+Total cost-effective measures (%) 1990-2022
+
+> bs14 = 11
+
+Total cost-neutral measures 1990-2022
+
+> bs15 = 6
+
+Remaining realistic potential 1990-2022
+
+> bs16 = 1
+
+Total emissions reduction 
 
 > x1 >= 0.35
 
@@ -91,15 +115,27 @@ Annual domestic measures savings (£)
 
 Domestic cost-effective measures
 
-> x8 <= 0
-
+> x8 = 0
+  
 Domestic cost-neutral measures
 
 > x9 <= 0
 
-Annual domestic carbon reduction potential
+Annual domestic, cost-effective carbon reduction potential (kTCO2e) in 2022
 
-> x10 >=  0 -- DONT FUCKING KNOW!!!!!!!111aaaRGGGGHHH!!!!!
+> x10 <=  625.52
+
+Annual domestic, cost-neutral carbon reduction potential (kTCO2) in 2022
+
+> x11 <= 1266.77
+
+Realistic annual domestic technical potential (£bn)
+
+> r1 = 0.51
+
+Realistic annual technical potential (kTCO2)
+
+> r2 = 847.12
 
 -- ## Commercial
 
@@ -119,9 +155,21 @@ Commercial cost-neutral measure costs
 
 > x14 <= 0
 
-Annual commercial carbon reduction potential
+Annual commercial, cost-effective carbon reduction potential 9kTCo2e) in 2022
 
-> x15 >= 0 --  DONT FUCKING KNOW!!!!!!!111aaaRGGGGHHH!!!!!
+> x15 <= 809.99
+
+Annual commercial, cost-neutral carbon reduction potential (kTCO2e) in 2022
+
+> x17 <= 1024.27
+
+Realistic annual commercial, technical, carbon reduction potential (£)
+
+> r3 = 0.29
+
+Realistc commercial, technical, carbon reduction potential
+
+> r4 = 1024.27
 
 -- ## Industrial
 
@@ -141,9 +189,21 @@ Industrial cost-neutral measures
 
 > x19 <= 0
 
-Annual industrial carbon reduction potential
+Annual industrial, cost-effective carbon reduction potential
 
-> x20 >=  0 -- DONT FUCKING KNOW!!!!!!!111aaaRGGGGHHH!!!!!
+> x20 <=  614.33
+
+Annual industrial, cost-neutral carbon reduction potential
+
+> x21 <= 925.90
+
+Realistic annual industrial, technical carbon-reduction potential (£)
+
+> r5 = 0.12
+
+Realistic annual, industrial, technical carbon-reduction potential (kTCO2e)
+
+> r6 = 925.90
 
 -- ## Transport
 
@@ -157,15 +217,87 @@ Annual transport measures savings (£) potential
 
 Transport cost-effective measure costs
 
-> x23 <= 0
+> x23a = 0
+> x23b = 0
 
-Transport  cost-neutral measure costs
+Transport cost-neutral measure costs
 
 > x24 <= 0
 
-Annual transport carbon reduction potential
+Annual transport cost-effective, carbon reduction potential (kTCO2e) in 2022
 
-> x25 >= 0 --  DONT FUCKING KNOW!!!!!!!111aaaRGGGGHHH!!!!!
+> x25 <= 326.74
 
--- ## Domestic measures
+Annual transport cost-neutral carbon reduction potential (kTCO2e) in 2022
+
+> x26 <= 606.32
+
+Realistic annual, transport, technical carbon reduction potential (£bn)
+
+> r7 = 0.38
+
+Realistic annual, transport, technical carbon reduction potential (kTCO2e)
+
+> r8 = 738.36
+
+Total realistic potential carbon reduction cost (£bn)
+
+> r9 = 1.3
+
+Total realistic potential carbon reduction (kTCO2e)
+
+> r10 = 3535.66
+
+-- ## Capital
+
+Domestic
+
+> r11 =
+
+Commercial
+
+> r12 = 
+
+Industrial
+
+> r13 =
+
+Transport
+
+> r14 =
+
+Total domestic carbon reduction (%) 2022
+
+> r15 <= 6.8
+
+Total commercial carbon reductiom (%) 2022
+
+> r17 <= 8.4
+
+Total industrial carbon reduction (%) 2022
+
+> r18 <= 7
+
+Total transport carbon reduction (%) 2022
+
+r19 <= 3.6
+
+-- ## Annual 
+
+-- ### Domestic measures
+
+-- Percentage of total CO2e emissions 2022
+
+> m26 = 36.9
+
+-- ### Commercial and industrial measures 2022
+
+> m27 = 41.6
+
+-- ### Transport measures 2022
+
+> m28 = 21.5
+
+http://www.carbontrust.co.uk
+
 

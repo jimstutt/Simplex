@@ -1,5 +1,9 @@
 # The Simplex method
 
+## Usage:
+
+ghci src/Main.lhs src/Simplex.hs
+
 ## Example 1
 
 Maximise:

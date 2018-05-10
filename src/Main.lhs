@@ -1,3 +1,5 @@
+> module Main where
+
 > import Control.Monad 
 > import Data.List 
 > import Data.Maybe 
@@ -5,7 +7,7 @@
 > import System.IO 
 > import Simplex (simplex,res,rows,ratios)
 
-> ex58 = do
+> main = do
 >   let rx = simplex m58
 >   print $ res m58
 

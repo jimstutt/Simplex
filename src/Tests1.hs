@@ -5,7 +5,7 @@ import Data.List
 import Data.Maybe
 import System.IO
 import Simplex
-import Tests
+import LPTests
 
 main :: IO ()
 main = do
